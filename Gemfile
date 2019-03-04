@@ -11,8 +11,9 @@ def location_for(place, fake_version = nil)
 end
 
 group :test do
-  gem 'puppetlabs_spec_helper', '>= 2.11.0',                        :require => false
-  gem 'rspec-puppet-facts', '>= 1.8.0',                             :require => false
+  gem 'puppetlabs_spec_helper',                                     :require => false
+  gem 'rspec-puppet',                                               :require => false
+  gem 'rspec-puppet-facts',                                         :require => false
   gem 'rspec-puppet-utils',                                         :require => false
   gem 'puppet-lint-leading_zero-check',                             :require => false
   gem 'puppet-lint-trailing_comma-check',                           :require => false
@@ -22,15 +23,18 @@ group :test do
   gem 'puppet-lint-variable_contains_upcase',                       :require => false
   gem 'puppet-lint-absolute_classname-check',                       :require => false
   gem 'metadata-json-lint',                                         :require => false
-  gem 'redcarpet',                                                  :require => false
-  gem 'rubocop', '~> 0.49.1',                                       :require => false
-  gem 'rubocop-rspec', '~> 1.15.0',                                 :require => false
-  gem 'mocha', '~> 1.4.0',                                          :require => false
-  gem 'coveralls',                                                  :require => false
-  gem 'simplecov-console',                                          :require => false
-  gem 'parallel_tests',                                             :require => false
-  gem 'redis',                                                      :require => false
+  gem 'puppet-strings', '1.1.0',                                    :require => false
+  gem 'puppet_facts',                                               :require => false
+  gem 'rubocop-rspec', '~> 1.6',                                    :require => false if RUBY_VERSION >= '2.3.0'
+  gem 'json_pure', '<= 2.0.1',                                      :require => false if RUBY_VERSION < '2.0.0'
+  gem 'safe_yaml', '~> 1.0.4',                                      :require => false
+  gem 'puppet-syntax',                                              :require => false
+  gem 'pry',                                                        :require => false
+  gem 'rb-readline',                                                :require => false
+  gem 'redis', '3.3.3',                                             :require => false
   gem 'mock_redis',                                                 :require => false
+  gem 'rack', '1.6.8',                                              :require => false
+  gem 'parallel_tests',                                             :require => false
 end
 
 group :development do

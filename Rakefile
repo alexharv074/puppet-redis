@@ -1,7 +1,10 @@
 require 'puppetlabs_spec_helper/rake_tasks'
+require 'puppet-lint/tasks/puppet-lint'
+require 'puppet-syntax/tasks/puppet-syntax'
+require 'puppet-strings/tasks'
 
-# load optional tasks for releases
-# only available if gem group releases is installed
+# These two gems aren't always present, for instance
+# on Travis with --without development
 begin
   require 'puppet_blacksmith/rake_tasks'
   require 'voxpupuli/release/rake_tasks'
