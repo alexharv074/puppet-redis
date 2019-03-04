@@ -78,8 +78,9 @@ describe 'redis::ulimit' do
     end
 
     it do
-      is_expected.to contain_augeas('Systemd redis ulimit').with(
-        'incl' => '/etc/systemd/system/redis-server.service.d/limit.conf',
+      is_expected.to contain_augeas("Systemd redis ulimit").with(
+      {
+        'incl'     => '/etc/systemd/system/redis-server.service.d/limit.conf',
         'lens'     => 'Systemd.lns',
         'changes'  => [
           'defnode nofile Service/LimitNOFILE ""',
