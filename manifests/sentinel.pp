@@ -211,19 +211,19 @@ class redis::sentinel (
         ensure => $package_ensure,
         before => File[$config_file_orig],
       }
-
       if $init_script {
         Package[$package_name] -> File[$init_script]
       }
     }
   }
 
-  file { $config_file_orig:
-    ensure  => present,
-    owner   => $service_user,
-    group   => $service_group,
-    mode    => $config_file_mode,
-    content => template($conf_template),
+  file {
+    $config_file_orig:
+      ensure  => present,
+      owner   => $service_user,
+      group   => $service_group,
+      mode    => $config_file_mode,
+      content => template($conf_template),
   }
 
   exec { "cp -p ${config_file_orig} ${config_file}":
@@ -235,12 +235,13 @@ class redis::sentinel (
 
   if $init_script {
 
-    file { $init_script:
-      ensure  => present,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0755',
-      content => template($init_template),
+    file {
+      $init_script:
+        ensure  => present,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0755',
+        content => template($init_template),
     }
 
     exec { '/usr/sbin/update-rc.d redis-sentinel defaults':
